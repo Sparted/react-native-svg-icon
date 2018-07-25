@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Platform, ViewPropTypes } from 'react-native';
+import { Platform, ViewPropTypes, Animated } from 'react-native';
 import Svg from 'react-native-svg';
+import extractBrush from 'react-native-svg/lib/extract/extractBrush';
 
 const SvgIcon = (props) => {
     if (!props.name) {
@@ -36,17 +37,34 @@ const SvgIcon = (props) => {
         viewBox = SvgIcon.defaultProps.viewBox;
     }
 
+    updateFillProps();
+
     return (
         <Svg height={height} width={width} viewBox={viewBox} style={props.style}>
             {React.cloneElement(svgEl, {
-                fill: props.fill,
+                fill: props.fill.hexString ? props.fill.hexString() : props.fill.__getValue(),
                 fillRule: props.fillRule,
                 stroke: props.stroke,
-                strokeWidth: strokeWidth
+                strokeWidth: strokeWidth,
+                ref: ref => (this.path = ref)
             })}
         </Svg>
     );
-};
+
+    /**
+     * Override 'fill' attribute to handle the color variation of icon
+     */
+    function updateFillProps() {
+      if (!props.fill || !props.animatedValue)
+        return ;
+
+      props.animatedValue.addListener(() => {
+        this.path.setNativeProps({
+          fill: extractBrush(props.fill.__getAnimatedValue()),
+        });
+      });
+    }
+  };
 
 SvgIcon.defaultProps = {
     fill: '#000',
@@ -57,7 +75,11 @@ SvgIcon.defaultProps = {
 };
 
 SvgIcon.propTypes = {
-    fill: PropTypes.string.isRequired,
+    fill: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]).isRequired,
+    animatedValue: PropTypes.instanceOf(Animated.Value),
     fillRule: PropTypes.string,
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     name: PropTypes.string.isRequired,

@@ -1,6 +1,6 @@
 {
-  "name": "react-native-svg-icon",
-  "version": "0.8.1",
+  "name": "@sparted/react-native-svg-icon",
+  "version": "0.9.0",
   "description": "A simple, but flexible SVG icon component for React Native",
   "main": "lib/index.js",
   "watch": {
@@ -11,10 +11,10 @@
     "watch": "npm-watch",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
-  "author": "Matt Stow <matt@mattstow.com>",
+  "author": "Mickagd <michael@sparted.com>",
   "homepage": "http://mattstow.com",
   "license": "MIT",
-  "repository": "https://github.com/stowball/react-native-svg-icon.git",
+  "repository": "https://github.com/sparted/react-native-svg-icon.git",
   "keywords": [
     "react",
     "react-native",

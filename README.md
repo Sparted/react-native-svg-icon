@@ -1,5 +1,10 @@
 # react-native-svg-icon
 
+# Some links which have allow to understand how to handle the animation
+#   - https://github.com/react-native-community/react-native-svg/tree/master/lib/extract
+#   - https://github.com/react-native-community/react-native-svg/issues/55
+#   - https://github.com/react-native-community/react-native-svg/issues/326
+
 A simple, but flexible SVG icon component for React Native. [Read the introductory blog post](https://medium.com/@stowball/creating-an-svg-icon-system-in-react-native-fa0964ea5fe4).
 
 [![npm version](https://badge.fury.io/js/react-native-svg-icon.svg)](https://badge.fury.io/js/react-native-svg-icon)
@@ -116,5 +121,5 @@ The specificity order for `viewBox` is:
 
 ---
 
-Copyright (c) 2018 [Matt Stow](http://mattstow.com)  
+Copyright (c) 2018 [Matt Stow](http://mattstow.com)
 Licensed under the MIT license *(see [LICENSE](https://github.com/stowball/react-native-svg-icon/blob/master/LICENSE) for details)*
